@@ -98,10 +98,11 @@ def welcome(request):
         activity_num = request.GET.get('activity')
         #REIM SELECCIONADO
         reim_num = request.GET.get('reim')
-        move_element_quantity=[]
-        aceptar_creacion_quantity = []
-        ingresar_creacion_quantity = []
-        volver_creacion_quantity = []
+        
+        move_element_quantity_response = []
+        aceptar_creacion_quantity_response = []
+        ingresar_creacion_quantity_response = []
+        volver_creacion_quantity_response = []
 
         if reim_num=="2":
 
@@ -110,7 +111,6 @@ def welcome(request):
             cursor.execute(move_element_query)
             queries.append({"name": 'Desplazado query', "query": move_element_query})
             move_element_quantity = cursor.fetchall()
-            move_element_quantity_response = []
             for row in move_element_quantity:
                 move_element_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
             
@@ -119,7 +119,6 @@ def welcome(request):
             cursor.execute(volver_creacion_query)
             queries.append({"name": 'volver creacion query', "query": volver_creacion_query})
             volver_creacion_quantity = cursor.fetchall()
-            volver_creacion_quantity_response = []
             for row in volver_creacion_quantity:
                 volver_creacion_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
             #aceptar creacion
@@ -127,7 +126,6 @@ def welcome(request):
             cursor.execute(aceptar_creacion_query)
             queries.append({"name": 'aceptar creacion query', "query": aceptar_creacion_query})
             aceptar_creacion_quantity = cursor.fetchall()
-            aceptar_creacion_quantity_response = []
             for row in aceptar_creacion_quantity:
                 aceptar_creacion_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
             
@@ -136,7 +134,6 @@ def welcome(request):
             cursor.execute(ingresar_creacion_query)
             queries.append({"name": 'ingresar creacion query', "query": ingresar_creacion_query})
             ingresar_creacion_quantity = cursor.fetchall()
-            ingresar_creacion_quantity_response = []
             for row in ingresar_creacion_quantity:
                 ingresar_creacion_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
             
