@@ -98,7 +98,7 @@ def welcome(request):
         activity_num = request.GET.get('activity')
         #REIM SELECCIONADO
         reim_num = request.GET.get('reim')
-        
+        move_element_quantity=[]
         aceptar_creacion_quantity = []
         ingresar_creacion_quantity = []
         volver_creacion_quantity = []
