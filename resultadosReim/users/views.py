@@ -90,41 +90,47 @@ def welcome(request):
         for row in touch_quantity:
             touch_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
         
-        #Elemento desplazado
-        move_element_query = get_move_element_query(request)
-        queries.append({"name": 'Desplazado query', "query": move_element_query})
-        cursor.execute(move_element_query)
-        move_element_quantity = cursor.fetchall()
-        move_element_quantity_response = []
-        for row in move_element_quantity:
-            move_element_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
-        
-        #Volver creacion
-        volver_creacion_query = get_volver_creacion_query(request)
-        queries.append({"name": 'volver creacion query', "query": volver_creacion_query})
-        cursor.execute(volver_creacion_query)
-        volver_creacion_quantity = cursor.fetchall()
-        volver_creacion_quantity_response = []
-        for row in volver_creacion_quantity:
-            volver_creacion_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
-        #aceptar creacion
-        aceptar_creacion_query = get_aceptar_creacion_query(request)
-        queries.append({"name": 'aceptar creacion query', "query": aceptar_creacion_query})
-        cursor.execute(aceptar_creacion_query)
-        aceptar_creacion_quantity = cursor.fetchall()
-        aceptar_creacion_quantity_response = []
-        for row in aceptar_creacion_quantity:
-            aceptar_creacion_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
-        
-        #Ingresar creacion
-        ingresar_creacion_query = get_ingresar_creacion_query(request)
-        queries.append({"name": 'ingresar creacion query', "query": ingresar_creacion_query})
-        cursor.execute(ingresar_creacion_query)
-        ingresar_creacion_quantity = cursor.fetchall()
-        ingresar_creacion_quantity_response = []
-        for row in ingresar_creacion_quantity:
-            ingresar_creacion_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
-        
+        aceptar_creacion_quantity = []
+        ingresar_creacion_quantity = []
+        volver_creacion_quantity = []
+
+        if reim_num=="2":
+
+            #Elemento desplazado
+            move_element_query = get_move_element_query(request)
+            queries.append({"name": 'Desplazado query', "query": move_element_query})
+            cursor.execute(move_element_query)
+            move_element_quantity = cursor.fetchall()
+            move_element_quantity_response = []
+            for row in move_element_quantity:
+                move_element_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
+            
+            #Volver creacion
+            volver_creacion_query = get_volver_creacion_query(request)
+            queries.append({"name": 'volver creacion query', "query": volver_creacion_query})
+            cursor.execute(volver_creacion_query)
+            volver_creacion_quantity = cursor.fetchall()
+            volver_creacion_quantity_response = []
+            for row in volver_creacion_quantity:
+                volver_creacion_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
+            #aceptar creacion
+            aceptar_creacion_query = get_aceptar_creacion_query(request)
+            queries.append({"name": 'aceptar creacion query', "query": aceptar_creacion_query})
+            cursor.execute(aceptar_creacion_query)
+            aceptar_creacion_quantity = cursor.fetchall()
+            aceptar_creacion_quantity_response = []
+            for row in aceptar_creacion_quantity:
+                aceptar_creacion_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
+            
+            #Ingresar creacion
+            ingresar_creacion_query = get_ingresar_creacion_query(request)
+            queries.append({"name": 'ingresar creacion query', "query": ingresar_creacion_query})
+            cursor.execute(ingresar_creacion_query)
+            ingresar_creacion_quantity = cursor.fetchall()
+            ingresar_creacion_quantity_response = []
+            for row in ingresar_creacion_quantity:
+                ingresar_creacion_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
+            
         #Cantidad de Usuarios
         cant_usuarios = get_alumnos(request)
         print("largo de graficos")
