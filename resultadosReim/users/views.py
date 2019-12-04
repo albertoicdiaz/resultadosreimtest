@@ -90,6 +90,15 @@ def welcome(request):
         for row in touch_quantity:
             touch_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
         
+        #Cantidad de Usuarios
+        cant_usuarios = get_alumnos(request)
+        print("largo de graficos")
+        print(cant_usuarios)
+        #actividad seleccionada
+        activity_num = request.GET.get('activity')
+        #REIM SELECCIONADO
+        reim_num = request.GET.get('reim')
+        
         aceptar_creacion_quantity = []
         ingresar_creacion_quantity = []
         volver_creacion_quantity = []
@@ -131,19 +140,12 @@ def welcome(request):
             for row in ingresar_creacion_quantity:
                 ingresar_creacion_quantity_response.append({ 'id': row[0], 'name': row[1], 'quantity': row[2] })
             
-        #Cantidad de Usuarios
-        cant_usuarios = get_alumnos(request)
-        print("largo de graficos")
-        print(cant_usuarios)
-        #actividad seleccionada
-        activity_num = request.GET.get('activity')
-        #REIM SELECCIONADO
-        reim_num = request.GET.get('reim')
         #Clean Ocean
         colision_quantity_response = []
         corrects_quantity_response = []
         incorrects_quantity_response = []
         jumps_quantity_response = []
+
         if reim_num=="3":
             colision_query = get_colision_co(request)
             cursor.execute(colision_query)
