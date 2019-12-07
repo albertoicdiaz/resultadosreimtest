@@ -65,7 +65,7 @@
                                 <div class="row  border-bottom white-bg dashboard-header">
                                     <div class="col-md-3">
                                         <label  class="font-normal">Colegio</label>
-                                        <select onchange = "this.form.submit()" id="school-filter-selector" name="school" class="form-control m-b">
+                                        <select  onchange = "this.form.submit()" id="school-filter-selector" name="school" class="form-control m-b">
                                             {% if schools|length == 0 or schools|length >= 1 %}
                                             <option value ="0" >Seleccione Colegio</option >
                                             {% endif %}
@@ -107,7 +107,7 @@
                                     </div>
                                     <div  class="col-md-3">
                                         <label  class="font-normal">Actividad</label>
-                                        <select id="activity-filter-selector" name="activity" class="form-control m-b">
+                                        <select onchange="this.form.submit()" id="activity-filter-selector" name="activity" class="form-control m-b">
                                             <option value ="0">Seleccione Actividad</option>
                                             {% if activities %}
                                             {% for activity in activities %}
@@ -116,22 +116,22 @@
                                             {% endif %}
                                         </select>
                                     </div>
-                                    <div  class="col-md-8">
+                                    <div  class="col-md-12">
                                         <div  class="ibox float-e-margins">
                                             <div  class="form-group" id="data_5">
                                                 <label  class="font-normal">Rango de fecha</label>
                                                 <div  class="input-daterange input-group" id="datepicker">
                                                     <span class="input-group-addon">Desde</span>
-                                                    <span  class="input-group-addon"><i class="fa fa-calendar"></i></span><input style="width:120" type="text" class="input-sm form-control" name="start" id="start-filter-selector" data-provide="datepicker" data-date-format="dd/mm/yyyy" value="dd/mm/aaaa"/>
+                                                    <span  class="input-group-addon"><i class="fa fa-calendar"></i></span><input onchange="this.form.submit()" style="width:120" type="text" class="input-sm form-control" name="start" id="start-filter-selector" data-provide="datepicker" data-date-format="dd/mm/yyyy" value="dd/mm/aaaa"/>
                                                     <span class="input-group-addon">Hasta</span>
-                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input style="width:120px" type="text" class="input-sm form-control" name="end" id="end-filter-selector" data-provide="datepicker" data-date-format="dd/mm/yyyy" value="dd/mm/aaaa"/>
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input onchange="this.form.submit()" style="width:120px" type="text" class="input-sm form-control" name="end" id="end-filter-selector" data-provide="datepicker" data-date-format="dd/mm/yyyy" value="dd/mm/aaaa"/>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div  class="col-md-4">
                                         <label  class="font-normal">Alumno</label>
-                                        <select id="student-filter-selector" name="student" class="form-control m-b">
+                                        <select onchange="this.form.submit()" id="student-filter-selector" name="student" class="form-control m-b">
                                             <option value ="0">Seleccione Alumno</option>
                                             {% if students %}
                                             {% for student in students %}
@@ -505,7 +505,7 @@
             {% endif %}
             {% endif %}
             <!--Clean Ocean -->
-            {% if reim_num == '3' and student_num == '0' %}
+            {% if reim_num == '3' %}
             <div class="wrapper wrapper-content">
                     <div class="row">
                         <div class="col-lg-12">
@@ -611,106 +611,107 @@
                         </div>
                     </div>
                     {% endif %}
-            {% endif %}
-
-            {% if student_num == '0' %}
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row" {% if not activate_graphics %}style="display: none;"{% endif %}>
-                            <div class="col-lg-6">
-                                <div class="ibox ">
-                                    <div class="ibox-title">
-                                        <h5>Minutos de juego</h5>
-                                        <div class="ibox-tools"></div>
-                                    </div>
-                                    <div class="ibox-content">
-                                        <div class="scroll_content">
-                                            <canvas id="stacked" height={{cant_usuarios}}>{% load staticfiles %}</canvas>
+                    {% endif %}
+            <!--Mundo Animal -->
+            {% if reim_num == '1' %}
+            <div class="wrapper wrapper-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row" {% if not activate_graphics %}style="display: none;"{% endif %}>
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h5>Cantidad de correctas e incorrectas por alumno</h5>
+                                            <div class="ibox-tools"></div>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="scroll_content">
+                                                <canvas id="prueba2" height={{cant_usuarios}}>{% load staticfiles %}</canvas>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="ibox">
-                                    <div class="ibox-title">
-                                        <h5>Cantidad de touch por alumno</h5>
-                                        <div class="ibox-tools"></div>
-                                    </div>
-                                    <div class="ibox-content">
-                                        <div class="scroll_content">
-                                            <canvas id="horizontalBar" height={{cant_usuarios}}>{% load staticfiles %}</canvas>
+                                <div class="col-lg-6">
+                                    <div class="ibox">
+                                        <div class="ibox-title">
+                                            <h5>Animales y su cantidad de veces escogido</h5>
+                                            <div class="ibox-tools"></div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" {% if not activate_graphics %}style="display: none;"{% endif %}>
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="ibox ">
-                                    <div class="ibox-title">
-                                        <h5>Sesiones por alumno</h5>
-                                        <div class="ibox-tools"></div>
-                                    </div>
-                                    <div class="ibox-content">
-                                        <div class="scroll_content">
-                                            <canvas id="stacked2" height={{cant_usuarios}}>{% load staticfiles %}</canvas>
+                                        <div class="ibox-content">
+                                            <div class="scroll_content">
+                                                <canvas id="animales" height={{cant_animales}}>{% load staticfiles %}</canvas>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                {% endif %}
-
-                {% if student_num != '0' %}
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row" {% if not activate_graphics %}style="display: none;"{% endif %}>
-                            <div class="col-lg-6">
-                                <div class="ibox ">
-                                    <div class="ibox-title">
-                                        <h5>Salidas en laberinto</h5>
-                                        <div class="ibox-tools"></div>
-                                    </div>
-                                    <div class="ibox-content">
-                                        <div class="scroll_content">
-                                            <canvas id="labExitCO"</canvas>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row" {% if not activate_graphics %}style="display: none;"{% endif %}>
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h5>Minutos de juego</h5>
+                                            <div class="ibox-tools"></div>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="scroll_content">
+                                                <canvas id="stacked" height={{cant_usuarios}}>{% load staticfiles %}</canvas>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="ibox ">
-                                    <div class="ibox-title">
-                                        <h5>Animales tocados por alumno</h5>
-                                        <div class="ibox-tools"></div>
-                                    </div>
-                                    <div class="ibox-content">
-                                        <div class="scroll_content">
-                                            <canvas id="touchanimalsco"</canvas>
+                                <div class="col-lg-6">
+                                    <div class="ibox">
+                                        <div class="ibox-title">
+                                            <h5>Cantidad de touch por alumno</h5>
+                                            <div class="ibox-tools"></div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="ibox ">
-                                    <div class="ibox-title">
-                                        <h5>Basura tocada por alumno</h5>
-                                        <div class="ibox-tools"></div>
-                                    </div>
-                                    <div class="ibox-content">
-                                        <div class="scroll_content">
-                                            <canvas id="touchtrash"</canvas>
+                                        <div class="ibox-content">
+                                            <div class="scroll_content">
+                                                <canvas id="horizontalBar" height={{cant_usuarios}}>{% load staticfiles %}</canvas>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                {% endif %}
+                    <div class="row" {% if not activate_graphics %}style="display: none;"{% endif %}>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h5>Sesiones por alumno</h5>
+                                            <div class="ibox-tools"></div>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="scroll_content">
+                                                <canvas id="stacked2" height={{cant_usuarios}}>{% load staticfiles %}</canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h5>Cantidad de touch totales del curso por actividad  </h5>
+                                            <div class="ibox-tools"></div>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="scroll_content">
+                                                <canvas id="actividades" height={{cant_actividades}}>{% load staticfiles %}</canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
 
                 <div>
                     <strong>Copyright</strong>  &copy; 2019
@@ -836,10 +837,9 @@
 
         };
 
-        if ($('#stacked').length){
-            var ctx = document.getElementById("stacked").getContext("2d");
-            new Chart(ctx, {type: 'horizontalBar', data: stackedData, options:stackedOptions});
-        }
+
+        var ctx = document.getElementById("stacked").getContext("2d");
+        new Chart(ctx, {type: 'horizontalBar', data: stackedData, options:stackedOptions});
         //TOUCH GENERAL
         var barData = {
             labels: [
@@ -885,10 +885,9 @@
             }
         };
 
-        if ($('#horizontalBar').length){
-            var ctx2 = document.getElementById("horizontalBar").getContext("2d");
-            new Chart(ctx2, {type: 'horizontalBar', data: barData, options:barOptions});
-        }
+
+        var ctx2 = document.getElementById("horizontalBar").getContext("2d");
+        new Chart(ctx2, {type: 'horizontalBar', data: barData, options:barOptions});
         //SESIONES TOTAL GENERAL
         var stacked2Data = {
             labels: [
@@ -938,10 +937,9 @@
             },
             display: true
         };
-        if ($('#stacked2').length){
-            var ctx3 = document.getElementById("stacked2").getContext("2d");
-            new Chart(ctx3, {type: 'horizontalBar', data: stacked2Data, options:stacked2Options});
-        }
+
+        var ctx3 = document.getElementById("stacked2").getContext("2d");
+        new Chart(ctx3, {type: 'horizontalBar', data: stacked2Data, options:stacked2Options});
 
         //ACTIVIDADES COMPLETADASVS NO COMPLETADAS CREACION PS
         var CreacionVSData = {
@@ -1109,14 +1107,137 @@
                 pointBorderColor: "#fff",
                 data: [
                     {% if jumps_quantity %}
-                        {% for jumps in jumps_quantity %}
-                            '{{jumps.quantity}}',
-                        {% endfor%}
-                    {% endif%}
-                ]
-            }
+            {% for jumps in jumps_quantity %}
+        '{{jumps.quantity}}',
+        {% endfor%}
+        {% endif%}
+        ]
+        }
         ]
         };
+        
+        var ctx15data = {
+            labels: [
+                {% if piezas_quantity %}
+        {% for piezas in piezas_quantity %}
+        '{{piezas.name}}',
+        {% endfor%}
+        {% endif%}
+        ],
+        datasets: [
+            {
+                label: "Cantidad de correctas",
+                backgroundColor: 'rgb(17,246,133)',
+                borderColor: "rgb(17,246,133)",
+                pointBorderColor: "#fff",
+                data: [
+                    {% if piezas_quantity %}
+            {% for piezas in piezas_quantity %}
+        '{{piezas.quantity}}',
+        {% endfor%}
+        {% endif%}
+        ]
+        }
+        ]
+        };
+
+        var ctx17data = {
+            labels: [
+                {% if animales_quantity %}
+        {% for animales in animales_quantity %}
+        '{{animales.name}}',
+        {% endfor%}
+        {% endif%}
+        ],
+        datasets: [
+            {
+                label: "Cantidad de preferencia",
+                backgroundColor: 'rgb(112,198,245)',
+                borderColor: "rgb(112,198,245)",
+                pointBorderColor: "#fff",
+                data: [
+                    {% if animales_quantity %}
+            {% for animales in animales_quantity %}
+        '{{animales.quantity}}',
+        {% endfor%}
+        {% endif%}
+        ]
+        }
+        ]
+        };
+
+
+
+        var ctx16data = {
+            labels: [
+                {% if malas_quantity %}
+        {% for malas in malas_quantity %}
+        '{{malas.name}}',
+        {% endfor%}
+        {% endif%}
+        ],
+        datasets: [
+            {
+                label: "Cantidad de incorrectas",
+                backgroundColor: 'rgb(207,52,118)',
+                borderColor: "rgb(207,52,118)",
+                pointBorderColor: "#fff",
+                data: [
+                    {% if malas_quantity %}
+            {% for malas in malas_quantity %}
+        '{{malas.quantity}}',
+        {% endfor%}
+        {% endif%}
+        ]
+        }
+        ]
+        };
+
+        var ctx18data = {
+            labels: [
+                {% if actividades_quantity %}
+        {% for actividades in actividades_quantity %}
+        '{{actividades.name}}',
+        {% endfor%}
+        {% endif%}
+        ],
+        datasets: [
+            {
+                label: "Cantidad de touch",
+                backgroundColor: 'rgb(207,52,118)',
+                borderColor: "rgb(207,52,118)",
+                pointBorderColor: "#fff",
+                data: [
+                    {% if actividades_quantity %}
+            {% for actividades in actividades_quantity %}
+        '{{actividades.quantity}}',
+        {% endfor%}
+        {% endif%}
+        ]
+        }
+        ]
+        };
+
+
+        if($('#piezas').length){
+            var ctx15 = document.getElementById("piezas").getContext("2d");
+            new Chart(ctx15, {type: 'horizontalBar', data: ctx15data, options:  barOptions});
+        }
+
+        if($('#actividades').length){
+            var ctx18 = document.getElementById("actividades").getContext("2d");
+            new Chart(ctx18, {type: 'horizontalBar', data: ctx18data, options:  barOptions});
+        }
+        if($('#animales').length){
+            var ctx17 = document.getElementById("animales").getContext("2d");
+            new Chart(ctx17, {type: 'horizontalBar', data: ctx17data, options:  barOptions});
+        }
+
+
+        if($('#malas').length){
+            var ctx16 = document.getElementById("malas").getContext("2d");
+            new Chart(ctx16, {type: 'horizontalBar', data: ctx16data, options:  barOptions});
+        }
 
         if($('#colisions').length){
             var ctx6 = document.getElementById("colisions").getContext("2d");
@@ -1132,19 +1253,21 @@
             var ctx8 = document.getElementById("jumps").getContext("2d");
             new Chart(ctx8, {type: 'horizontalBar', data: ctx8data, options:barOptions});
         }
+        
 
-        if ($('#prueba').length){
-            var ctx10 = document.getElementById('prueba');
-            var myChart = new Chart(ctx10, {
+        if ($('#prueba2').length){
+            var ctx17 = document.getElementById('prueba2');
+            var myChart = new Chart(ctx17, {
             type: 'horizontalBar',
             data: {
-                labels:
+                labels: 
                 [
-                    {% if corrects_quantity %}
-                        {% for corrects in corrects_quantity %}
-                            '{{corrects.name}}',
+                    {% if piezas_quantity %}
+                        {% for piezas in piezas_quantity %}
+                            '{{piezas.name}}',
                         {% endfor%}
                     {% endif%}
+                    
                     //,
 
                     // {% if incorrects_quantity %}
@@ -1153,14 +1276,86 @@
                     //     {% endfor%}
                     // {% endif%}
                 ],
-                datasets:
+                datasets: 
+                [
+                    {
+                        label: "Correctas",
+                        backgroundColor: 'rgb(17,246,133)',
+                        borderColor: "rgb(17,246,133)",
+                        pointBorderColor: "#fff",
+                        data: 
+                        [
+                            {% if piezas_quantity %}
+                                {% for piezas in piezas_quantity %}
+                                    '{{piezas.quantity}}',
+                                {% endfor%}
+                            {% endif%}
+                        ]
+                    },
+                    {
+                        label: "Incorrectas",
+                        backgroundColor: 'rgb(255,122,122)',
+                        borderColor: "rgb(255,122,122)",
+                        pointBorderColor: "#fff",
+                        data: 
+                        [
+                            {% if malas_quantity %}
+                                {% for malas in malas_quantity %}
+                                    '{{malas.quantity}}',
+                                {% endfor%}
+                            {% endif%}
+                        ]
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes:[{
+                            stacked:false,
+                            ticks: {
+                                min: 0,
+                                callback: function(value, index, values) {
+                                    if (Math.floor(value) === value) {
+                                        return value;
+                                    }
+                                }
+                            }
+                        }],
+                yAxes: [{ stacked: false }]
+                }
+            }
+            });
+        }
+
+        if ($('#prueba').length){
+            var ctx10 = document.getElementById('prueba');
+            var myChart = new Chart(ctx10, {
+            type: 'horizontalBar',
+            data: {
+                labels: 
+                [
+                    {% if corrects_quantity %}
+                        {% for corrects in corrects_quantity %}
+                            '{{corrects.name}}',
+                        {% endfor%}
+                    {% endif%}
+                    
+                    //,
+
+                    // {% if incorrects_quantity %}
+                    //     {% for incorrects in incorrects_quantity %}
+                    //         '{{incorrects.name}}',
+                    //     {% endfor%}
+                    // {% endif%}
+                ],
+                datasets: 
                 [
                     {
                         label: "Correctas totales",
                         backgroundColor: 'rgb(87,35,100)',
                         borderColor: "rgb(87,35,100)",
                         pointBorderColor: "#fff",
-                        data:
+                        data: 
                         [
                             {% if corrects_quantity %}
                                 {% for corrects in corrects_quantity %}
@@ -1174,7 +1369,7 @@
                         backgroundColor: 'rgb(0,255,255)',
                         borderColor: "rgb(0,255,255)",
                         pointBorderColor: "#fff",
-                        data:
+                        data: 
                         [
                             {% if incorrects_quantity %}
                                 {% for incorrects in incorrects_quantity %}
@@ -1202,195 +1397,101 @@
                 }
             }
             });
-        };
-
-        var ctx12data = {
-            labels:
-            [
-                {% if exit_lab_quantity %}
-                    {% for exit_lab in exit_lab_quantity %}
-                        '{{exit_lab.name}}',
-                    {% endfor%}
-                {% endif%}
-            ],
-            datasets:
-            [
-                {
-                label: "Salidas obtenidas",
-                backgroundColor: 'rgb(207,52,118)',
-                borderColor: "rgb(207,52,118)",
-                pointBorderColor: "#fff",
-                data:
-                [
-                {% if exit_lab_quantity %}
-                    {% for exit_lab in exit_lab_quantity %}
-                        '{{exit_lab.quantity}}',
-                    {% endfor%}
-                {% endif%}
-                ]
-                }
-            ]
-            };
-
-        if ($('#labExitCO').length){
-            var ctx12 = document.getElementById('labExitCO');
-            new Chart(ctx12, {type: 'horizontalBar', data: ctx12data, options:barOptions});
         }
 
-        var numberWithCommas = function(x) 
-        {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        };
         if ($('#analitics').length){
             var ctx11 = document.getElementById('analitics');
             var Chart11 = new Chart(ctx11, {
             type: 'horizontalBar',
             data: {
-                labels:
+                labels: 
                 [
-                    {% if analytics_co_quantity %}
-                        {% for analytics_co in analytics_co_quantity %}
-                            '{{analytics_co.name}}',
+                    {% if corrects_quantity %}
+                        {% for corrects in corrects_quantity %}
+                            '{{corrects.name}}',
                         {% endfor%}
                     {% endif%}
+
                 ],
-                datasets:
+                datasets: 
                 [
                     {
                         label: "Correctas Actividad 1",
-                        backgroundColor: '#46b3e6',
-                        borderColor: "#46b3e6",
+                        backgroundColor: 'rgb(23,165,137)',
+                        borderColor: "rgb(23,165,137)",
                         pointBorderColor: "#fff",
-                        data:
+                        data: 
                         [
-                            {% if analytics_co_quantity %}
-                                {% for analytics_co in analytics_co_quantity %}
-                                    '{{analytics_co.correctsact1}}',
+                            {% if corrects_act1_quantity %}
+                                {% for corrects_act1 in corrects_act1_quantity %}
+                                    '{{corrects_act1.quantity}}',
                                 {% endfor%}
                             {% endif%}
                         ]
                     },
                     {
                         label: "Incorrectas Actividad 1",
-                        backgroundColor: '#fe6845',
-                        borderColor: "#fe6845",
+                        backgroundColor: 'rgb( 142, 68, 173 )',
+                        borderColor: "rgb( 142, 68, 173 )",
                         pointBorderColor: "#fff",
-                        data:
+                        data: 
                         [
-                            {% if analytics_co_quantity %}
-                                {% for analytics_co in analytics_co_quantity %}
-                                    '{{analytics_co.incorrectsact1}}',
+                            {% if incorrects_act1_quantity %}
+                                {% for incorrects_act1 in incorrects_act1_quantity %}
+                                    '{{incorrects_act1.quantity}}',
                                 {% endfor%}
                             {% endif%}
                         ]
                     },
                     {
                         label: "Correctas Actividad 2",
-                        backgroundColor: '#c6cbef',
-                        borderColor: "#c6cbef",
+                        backgroundColor: 'rgb(245, 176, 65)',
+                        borderColor: "rgb(245, 176, 65)",
                         pointBorderColor: "#fff",
-                        data:
+                        data: 
                         [
-                            {% if analytics_co_quantity %}
-                                {% for analytics_co in analytics_co_quantity %}
-                                    '{{analytics_co.correctsact2}}',
+                            {% if corrects_act2_quantity %}
+                                {% for corrects_act2 in corrects_act2_quantity %}
+                                    '{{corrects_act2.quantity}}',
                                 {% endfor%}
                             {% endif%}
                         ]
                     },
                     {
                         label: "Incorrectas Actividad 2",
-                        backgroundColor: '#ffd739',
-                        borderColor: "#ffd739",
+                        backgroundColor: 'rgb( 93, 173, 226 )',
+                        borderColor: "rgb( 93, 173, 226 )",
                         pointBorderColor: "#fff",
-                        data:
+                        data: 
                         [
-                            {% if analytics_co_quantity %}
-                                {% for analytics_co in analytics_co_quantity %}
-                                    '{{analytics_co.incorrectsact2}}',
+                            {% if incorrects_act2_quantity %}
+                                {% for incorrects_act2 in incorrects_act2_quantity %}
+                                    '{{incorrects_act2.quantity}}',
                                 {% endfor%}
                             {% endif%}
                         ]
                     }
                 ]
             },
-                options: {
-                    scales: {
-                    xAxes: [{ 
-                        stacked: true, 
+            options: {
+                scales: {
+                    xAxes:[{
+                            stacked:true,
+                            ticks: {
+                                min: 0,
+                                callback: function(value, index, values) {
+                                    if (Math.floor(value) === value) {
+                                        return value;
+                                    }
+                                }
+                            }
                         }],
-                    yAxes: [{ 
-                        stacked: true}],
-                    },
+                yAxes: [{ stacked: true }]
                 }
-                });
+            }
+            });
         }
 
-        var ctx15data = {
-            labels:
-            [
-                {% if touch_animals_co_quantity %}
-                    {% for touch_animals_co in touch_animals_co_quantity %}
-                        '{{touch_animals_co.name}}',
-                    {% endfor%}
-                {% endif%}
-            ],
-            datasets:
-            [
-                {
-                label: "Cantidad de animales tocados",
-                backgroundColor: 'rgb(207,52,118)',
-                borderColor: "rgb(207,52,118)",
-                pointBorderColor: "#fff",
-                data:
-                [
-                    {% if touch_animals_co_quantity %}
-                        {% for touch_animals_co in touch_animals_co_quantity %}
-                            '{{touch_animals_co.quantity}}',
-                        {% endfor%}
-                    {% endif%}
-                ]
-                }
-            ]
-            };
-
-        if ($('#touchanimalsco').length){
-            var ctx15 = document.getElementById("touchanimalsco");
-            new Chart(ctx15, {type: 'horizontalBar', data: ctx15data, options:barOptions});
-        }
-
-        var ctx16data = {
-            labels:
-            [
-                {% if touch_trash_co_quantity %}
-                    {% for touch_trash_co in touch_trash_co_quantity %}
-                        '{{touch_trash_co.name}}',
-                    {% endfor%}
-                {% endif%}
-            ],
-            datasets:
-            [
-                {
-                label: "Cantidad de basura tocada",
-                backgroundColor: 'rgb(207,52,118)',
-                borderColor: "rgb(207,52,118)",
-                pointBorderColor: "#fff",
-                data:
-                [
-                    {% if touch_trash_co_quantity %}
-                        {% for touch_trash_co in touch_trash_co_quantity %}
-                            '{{touch_trash_co.quantity}}',
-                        {% endfor%}
-                    {% endif%}
-                ]
-                }
-            ]
-            };
-
-        if ($('#touchtrash').length){
-            var ctx16 = document.getElementById("touchtrash");
-            new Chart(ctx16, {type: 'horizontalBar', data: ctx16data, options:barOptions});
-        }
     </script>
 
 
@@ -1406,7 +1507,7 @@
                 }
             }
         }
-        setFilterSelectors(['school','course','reim', 'activity', 'start', 'end', 'student'])
+        setFilterSelectors(['school','course','reim', 'activity', 'start', 'end'])
     </script>
 
     <!-- <script type="text/javascript">
